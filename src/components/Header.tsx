@@ -1,18 +1,18 @@
-import { Link, NavLink } from 'react-router-dom';
-import { useAppSelector } from '../app/hooks';
-import { selectCartCount } from '../features/cart/cartSlice';
-import { useAuth } from '../contexts/AuthContext';
-import { useTheme } from '../contexts/ThemeContext';
+import { Link, NavLink } from "react-router-dom";
+import { useAppSelector } from "../app/hooks";
+import { selectCartCount } from "../features/cart/cartSlice";
+import { useAuth } from "../contexts/AuthContext";
+import { useTheme } from "../contexts/ThemeContext";
 
 const getNavClass = ({ isActive }: { isActive: boolean }): string =>
-  isActive ? 'nav__link nav__link--active' : 'nav__link';
+  isActive ? "nav__link nav__link--active" : "nav__link";
 
 export default function Header() {
   const cartCount = useAppSelector(selectCartCount);
   const { user, logout } = useAuth();
   const { theme, toggleTheme } = useTheme();
 
-  const isDark = theme === 'dark';
+  const isDark = theme === "dark";
 
   return (
     <header className="header">
@@ -28,7 +28,7 @@ export default function Header() {
           <NavLink to="/cart" className={getNavClass}>
             Giỏ hàng
             <span
-              className={cartCount > 0 ? 'badge' : 'badge badge--empty'}
+              className={cartCount > 0 ? "badge" : "badge badge--empty"}
               aria-label={`${cartCount} sản phẩm trong giỏ`}
             >
               {cartCount}
@@ -44,10 +44,14 @@ export default function Header() {
             type="button"
             className="icon-btn"
             onClick={toggleTheme}
-            aria-label={isDark ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
-            title={isDark ? 'Giao diện sáng' : 'Giao diện tối'}
+            aria-label={
+              isDark
+                ? "Chuyển sang giao diện sáng"
+                : "Chuyển sang giao diện tối"
+            }
+            title={isDark ? "Giao diện sáng" : "Giao diện tối"}
           >
-            {isDark ? '☀️' : '🌙'}
+            {isDark ? "☀️" : "🌙"}
           </button>
 
           {user ? (
@@ -55,7 +59,11 @@ export default function Header() {
               <span className="header__user" title={user.username}>
                 Xin chào, {user.username}
               </span>
-              <button type="button" className="btn btn--ghost btn--sm" onClick={logout}>
+              <button
+                type="button"
+                className="btn btn--ghost btn--sm"
+                onClick={logout}
+              >
                 Đăng xuất
               </button>
             </>
